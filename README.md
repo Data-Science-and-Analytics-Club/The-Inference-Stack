@@ -2,6 +2,16 @@
 
 This runbook follows the commands that worked in your terminal session. It is ordered for a live event: demonstrate the running service, explain GPU utilization, run a local chat-completion request, and then demonstrate inference through the external RunPod URL.
 
+```
+vllm serve Qwen/Qwen3-8B \
+  --host 0.0.0.0 \
+  --port 8000 \
+  --dtype auto \
+  --enforce-eager \
+  --gpu-memory-utilization 0.95 \
+  --max-model-len 8128
+```
+
 ## 1. Show the running vLLM service
 
 Run inside the vLLM container:
