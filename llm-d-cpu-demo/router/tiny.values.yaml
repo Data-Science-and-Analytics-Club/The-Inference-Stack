@@ -1,0 +1,32 @@
+# Demo-only values to fit a small single-node VM. Not production sizing.
+router:
+  epp:
+    replicas: 1
+    resources:
+      requests:
+        cpu: "250m"
+        memory: 512Mi
+      limits:
+        cpu: "1"
+        memory: 1Gi
+  proxy:
+    resources:
+      requests:
+        cpu: "100m"
+        memory: 128Mi
+      limits:
+        cpu: "500m"
+        memory: 512Mi
+    args:
+      - "--service-node"
+      - "envoy-sidecar"
+      - "--log-level"
+      - "warn"
+      - "--concurrency"
+      - "1"
+      - "--drain-strategy"
+      - "immediate"
+      - "--drain-time-s"
+      - "10"
+      - "-c"
+      - "/etc/envoy/envoy.yaml"
